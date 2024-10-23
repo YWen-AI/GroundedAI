@@ -1,6 +1,6 @@
-# matgpt-evaluation
+# GroundedAI
 ```
-matgpt-evaluation/
+GroundedAI/
 │
 ├── data/
 │   ├── eval_output/     # Evaluation results data goes here
@@ -10,7 +10,7 @@ matgpt-evaluation/
 ├── data_preprocessing/  # Storing scripts needed for making test dataset
 │
 ├── dependencies/
-│   └── matgpt-evaluation.yml  # List of Python dependencies
+│   └── Grounded-AI.yml  # List of Python dependencies
 │
 ├── src/                # Source code for the project
 │   └── config.json     # Configuration file
@@ -23,6 +23,4 @@ matgpt-evaluation/
 │
 ├── requirements.txt    # List of Python dependencies
 ├── README.md           # Project overview, how to use, install, etc.
-├── .gitignore          # Files and directories to ignore in Git
-└── LICENSE             # License for the project
 ```
