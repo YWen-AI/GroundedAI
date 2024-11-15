@@ -90,17 +90,8 @@ async def main():
 
     qa_chain = initialize_qa_retrieval_chain(config["rag_parameters"])
 
-    prompt = "We are working with an Aluminum-8.5wt% Magnesium alloy. The alloy exhibits corrosion in the nitric acid mass loss test. What could be the possible reason for this observation?"
-    #prompt = "Please describe WorléeKyd RL 1290."
-    #prompt = "How to solve it for aluminum-Magnesium alloy?"
-    #prompt = "When did the porthold for Gorch Fock delivered?"
-    #prompt = "Welche Projekte hat AGP Europe im Jahr 2017 angeboten?"
-    #prompt = "Tell me about offer AG5204?"
-    #prompt = "bitte nenne mir das letzte Angebot, welches wir an den Kunden Fassmer geschickt haben."
-    #prompt = "für was steht EMI?"
-    #prompt = "How to solve it for aluminum-Magnesium alloy?"
+    prompt = "What is a Higgs Boson?"
     chat_history = []
-    #chat_history = ["What is corrosion?", "Corrosion is defined as the destruction or deterioration of a material because of reaction with its environment. This process involves chemical, physical, and electrochemical factors and can significantly change the material's properties. For metals, corrosion is an electrochemical reaction that typically begins at the surface and can lead to the loss or contamination of products, costly maintenance, and other economic impacts. The degradation can occur in various environments, including atmosphere, water, seawater, and organic environments."]
     prompt = {'question': prompt, 'chat_history': chat_history}
 
     #print(prompt)
