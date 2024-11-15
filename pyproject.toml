@@ -1,0 +1,37 @@
+[tool.poetry]
+name = "GroundedAI"
+version = "0.1.0"
+description = "A General Grounded RAG application."
+authors = ["Yiwen Wen"]
+license = "None"
+packages = [{include = "GroundedAI"}]
+
+[tool.poetry.dependencies]
+# Add core dependencies here
+python = "^3.12"
+numpy = "^1.26"
+pip = "24.0"
+langchain = "0.2.10"
+langchain_community = "0.2.9"
+langchain_openai = "0.1.20"
+langchain-elasticsearch = "0.2.2"
+openai = "1.47.1"
+elasticsearch = "8.14.0"
+python-dotenv = "1.0.1"
+pandas = "2.1.4"
+sentence_transformers = "2.2.2"
+
+[tool.poetry.dev-dependencies]
+# Dependencies for dev
+pytest = "^7.4.2"
+pytest-asyncio = "^0.21.1"
+pytest-mock = "3.14.0"
+mypy = "^1.5.1"
+tox = "^4.8.0"
+
+[build-system]
+requires = ["poetry-core>=1.6.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.mypy]
+plugins = ["pydantic.mypy"]
