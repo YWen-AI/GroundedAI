@@ -6,10 +6,6 @@ from langchain_core.callbacks.base import BaseCallbackHandler
 class LLMAppCallbackHandler(BaseCallbackHandler):
     """
     A callback handler for tracking the execution of chains and chat models.
-    
-    Attributes:
-        session_id (str): The ID of the session.
-        logger (logging.Logger): Logger for logging information with the session ID.
     """
     def __init__(self, *args, **kwargs):
         """

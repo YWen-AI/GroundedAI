@@ -3,7 +3,7 @@ from langchain_openai.embeddings.base import OpenAIEmbeddings
 
 from dotenv import load_dotenv, find_dotenv
 
-from src.utils.config_utils import load_config
+from GroundedAI.utils.config_utils import load_config
 
 class EmbeddingFactory:
     def __init__(self, provider, callbacks=[]):

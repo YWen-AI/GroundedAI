@@ -2,16 +2,16 @@ from langchain_community.callbacks.manager import get_openai_callback
 from langchain.retrievers.document_compressors import CrossEncoderReranker
 from langchain_community.cross_encoders import HuggingFaceCrossEncoder
 
-from src.chains.chains import ChainFactory
-from src.callbacks.callbacks import LLMAppCallbackHandler
-from src.llms.llms import LLMFactory
-from src.embeddings.embeddings import EmbeddingFactory
-from src.prompt_templates.rag_prompt_templates import prompt_dict
-from src.vector_stores.base import VectorStoreFactory
-from src.retrievers.base import RetrieverFactory
+from GroundedAI.chains.chains import ChainFactory
+from GroundedAI.callbacks.callbacks import LLMAppCallbackHandler
+from GroundedAI.llms.llms import LLMFactory
+from GroundedAI.embeddings.embeddings import EmbeddingFactory
+from GroundedAI.prompt_templates.rag_prompt_templates import prompt_dict
+from GroundedAI.vector_stores.base import VectorStoreFactory
+from GroundedAI.retrievers.base import RetrieverFactory
 
-from src.utils.config_utils import load_config
-from src.utils.word_processing import pretty_print_docs, get_contexts_and_metadata
+from GroundedAI.utils.config_utils import load_config
+from GroundedAI.utils.word_processing import pretty_print_docs, get_contexts_and_metadata
 
 def initialize_qa_retrieval_chain(config_rag):
 

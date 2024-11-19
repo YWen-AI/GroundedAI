@@ -1,9 +1,9 @@
 import pandas as pd
 
-from src.rags.rags import initialize_qa_retrieval_chain, start_prompting
+from GroundedAI.rags.rags import initialize_qa_retrieval_chain, start_prompting
 
-from src.utils.config_utils import load_config
-from src.utils.word_processing import detect_delimiter
+from GroundedAI.utils.config_utils import load_config
+from GroundedAI.utils.word_processing import detect_delimiter
 
 
 async def batch_rags(question_file, config_rag, batch_mode=True, batch_num=15, debug=False):

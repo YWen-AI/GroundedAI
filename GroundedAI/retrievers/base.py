@@ -1,6 +1,6 @@
-from src.retrievers.simple_retriever import create_simple_retriever
-from src.retrievers.ensemble_retriever import create_ensemble_retriever
-from src.retrievers.merger_retriever import create_merger_retriever
+from GroundedAI.retrievers.simple_retriever import create_simple_retriever
+from GroundedAI.retrievers.ensemble_retriever import create_ensemble_retriever
+from GroundedAI.retrievers.merger_retriever import create_merger_retriever
 
 class RetrieverFactory():
     def __init__(self, vector_stores, search_type, search_kwargs, multi_vector_store_strategies=None, weights=None):

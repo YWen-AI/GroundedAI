@@ -12,9 +12,9 @@ from langchain_core.retrievers import RetrieverLike, RetrieverOutputLike
 from langchain_core.documents.compressor import BaseDocumentCompressor
 from langchain_core.runnables import RunnableParallel, RunnablePassthrough, RunnableBranch
 
-from src.prompt_templates.contextualize_question_prompt_templates import contextualize_q_prompt
-from src.utils.word_processing import format_docs
-from src.utils.citation import extract_and_replace_references, format_docs_with_title
+from GroundedAI.prompt_templates.contextualize_question_prompt_templates import contextualize_q_prompt
+from GroundedAI.utils.word_processing import format_docs
+from GroundedAI.utils.citation import extract_and_replace_references, format_docs_with_title
 
 def create_conversational_retrieval_chain(llm: BaseLanguageModel, retriever: BaseRetriever, callbacks: BaseCallbackHandler, combine_documents_prompt):
 

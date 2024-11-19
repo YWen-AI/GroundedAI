@@ -2,7 +2,7 @@ from langchain_openai.chat_models.azure import AzureChatOpenAI
 from langchain_openai.chat_models.base import ChatOpenAI
 from dotenv import load_dotenv, find_dotenv
 
-from src.utils.config_utils import load_config
+from GroundedAI.utils.config_utils import load_config
 
 class LLMFactory:
     def __init__(self, provider, temperature=0, callbacks=[]):
