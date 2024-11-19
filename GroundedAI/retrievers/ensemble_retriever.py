@@ -6,9 +6,9 @@ def create_ensemble_retriever(retrievers, weights):
     return ensemble_retriever
 
 if __name__ == "__main__":
-    from src.vector_stores.base import VectorStoreFactory
+    from GroundedAI.vector_stores.base import VectorStoreFactory
 
-    from src.embeddings.embeddings import EmbeddingFactory
+    from GroundedAI.embeddings.embeddings import EmbeddingFactory
 
     embedding_model = EmbeddingFactory(provider="AzureOpenAI").create_model()
 

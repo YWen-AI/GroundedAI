@@ -1,6 +1,6 @@
-from src.llms.llms import LLMFactory
-from src.prompt_templates.rag_prompt_templates import prompt_dict
-from src.chains.chains import ChainFactory
+from GroundedAI.llms.llms import LLMFactory
+from GroundedAI.prompt_templates.rag_prompt_templates import prompt_dict
+from GroundedAI.chains.chains import ChainFactory
 from langchain.schema.output_parser import StrOutputParser
 
 def initialize_chain():

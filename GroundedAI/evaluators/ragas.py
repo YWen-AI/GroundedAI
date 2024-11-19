@@ -8,7 +8,7 @@ from sentence_transformers import CrossEncoder
 from ragas import evaluate
 from ragas.metrics import answer_relevancy, faithfulness, context_recall, context_precision, answer_correctness,answer_similarity
 
-from src.utils.word_processing import detect_delimiter
+from GroundedAI.utils.word_processing import detect_delimiter
 
 class RagasEvaluator:
     def __init__(self, metrics, groundtruths_folder, generated_folder, groundtruths_file, generated_file, output, bad_PDF):

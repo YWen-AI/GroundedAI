@@ -1,8 +1,8 @@
-from src.vector_stores.faiss import load_FAISS_vectorstore
-from src.vector_stores.elastic_search import load_ElasticSearch_vectorstore
+from GroundedAI.vector_stores.faiss import load_FAISS_vectorstore
+from GroundedAI.vector_stores.elastic_search import load_ElasticSearch_vectorstore
 
-from src.utils.config_utils import load_config
-from src.utils.load_env_keys import load_keys
+from GroundedAI.utils.config_utils import load_config
+from GroundedAI.utils.load_env_keys import load_keys
 
 class VectorStoreFactory():
     def __init__(self, embedding_model, providers, deployments, index_names, hybrid=False, rank_window_size=10):

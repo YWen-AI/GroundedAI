@@ -1,10 +1,10 @@
 import argparse
 from ragas.metrics import answer_relevancy, faithfulness, context_recall, context_precision, answer_correctness, answer_similarity
 
-from src.rags.batch_rags import batch_rags
-from src.evaluators.ragas import RagasEvaluator
+from GroundedAI.rags.batch_rags import batch_rags
+from GroundedAI.evaluators.ragas import RagasEvaluator
 
-from src.utils.config_utils import load_config
+from GroundedAI.utils.config_utils import load_config
 
 
 async def rag_eval(only_eval, tag, evaluator_type, input_groundtruths_file, input_groundtruths_folder, generated_folder, output_folder, metrics, bad_PDF):

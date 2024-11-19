@@ -7,9 +7,9 @@ def create_merger_retriever(retrievers):
 
 
 if __name__ == "__main__":
-    from src.vector_stores.base import VectorStoreFactory
-    from src.utils.config_utils import load_config
-    from src.embeddings.embeddings import EmbeddingFactory
+    from GroundedAI.vector_stores.base import VectorStoreFactory
+    from GroundedAI.utils.config_utils import load_config
+    from GroundedAI.embeddings.embeddings import EmbeddingFactory
 
     config = load_config("src/config.json")
 

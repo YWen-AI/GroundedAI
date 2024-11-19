@@ -1,4 +1,4 @@
-from src.chains.conversational_retrieval_chain import (
+from GroundedAI.chains.conversational_retrieval_chain import (
     create_conversational_retrieval_chain, 
     create_conversational_retrieval_chain_LCEL,
     create_conversational_retrieval_chain_LCEL_CrossEncoder_rerank,
