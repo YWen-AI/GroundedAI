@@ -1,9 +1,11 @@
 from langchain.retrievers import EnsembleRetriever
 
+
 def create_ensemble_retriever(retrievers, weights):
     ensemble_retriever = EnsembleRetriever(retrievers=retrievers, weights=weights)
-    
+
     return ensemble_retriever
+
 
 if __name__ == "__main__":
     from GroundedAI.vector_stores.base import VectorStoreFactory

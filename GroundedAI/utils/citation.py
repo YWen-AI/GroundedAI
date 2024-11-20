@@ -1,18 +1,19 @@
 import re
-from typing import List, Set
-from pydantic import BaseModel
+from typing import List
 from langchain_core.documents import Document
+
 
 def format_docs_with_title(docs: List[Document]) -> str:
     if not all(isinstance(doc, Document) for doc in docs):
         raise ValueError
-        
+
     formatted = [
         f"Source Title: {doc.metadata['document_title']}\nSource Snippet: {doc.page_content}"
         for doc in docs
     ]
 
     return "\n\n".join(formatted)
+
 
 def find_references(text: str) -> List[str]:
     """
@@ -29,8 +30,9 @@ def find_references(text: str) -> List[str]:
     # Find all occurrences of [source: Source Title]
     reference_pattern = r'\[source:\s*([^\]]+?)\s*\]'
     matches = re.findall(reference_pattern, text)
-    
+
     return matches
+
 
 def get_unique_references(references: List[str]) -> List[str]:
     """
@@ -55,6 +57,7 @@ def get_unique_references(references: List[str]) -> List[str]:
 
     return unique_references
 
+
 def create_reference_mapping(unique_references: List[str]) -> dict:
     """
     Create a mapping of reference titles to reference numbers.
@@ -68,9 +71,10 @@ def create_reference_mapping(unique_references: List[str]) -> dict:
     # Ensure all elements in the list are strings
     if not all(isinstance(ref, str) for ref in unique_references):
         raise ValueError
-    
+
     # Create a mapping of reference title to reference number
     return {ref: str(i + 1) for i, ref in enumerate(unique_references)}
+
 
 def replace_reference(match: re.Match, reference_mapping: dict) -> str:
     """
@@ -86,14 +90,15 @@ def replace_reference(match: re.Match, reference_mapping: dict) -> str:
 
     if not isinstance(match, re.Match) or not isinstance(reference_mapping, dict):
         raise TypeError
-    # Extract the reference title from the match object      
+    # Extract the reference title from the match object
     ref_title = match.group(1).strip()
-        
+
     # Check if the reference title exists in the reference mapping
     if ref_title not in reference_mapping:
         raise KeyError
-        
+
     return f"[{reference_mapping[ref_title]}]"
+
 
 def replace_inline_citations(text: str, reference_mapping: dict) -> str:
     """
@@ -111,6 +116,7 @@ def replace_inline_citations(text: str, reference_mapping: dict) -> str:
 
     return result
 
+
 def create_reference_list(unique_references: List[str]) -> str:
     """
     Create a formatted reference list from a list of unique references.
@@ -124,14 +130,15 @@ def create_reference_list(unique_references: List[str]) -> str:
 
     if not all(isinstance(ref, str) for ref in unique_references):
         raise ValueError
-        
+
     # Create the reference list
-    reference_list = "\n\n #### References:\n\n" + "\n\n".join(f"[{i+1}] {ref}" for i, ref in enumerate(unique_references))
+    reference_list = "\n\n #### References:\n\n" + "\n\n".join(f"[{i + 1}] {ref}" for i, ref in enumerate(unique_references))
     return reference_list
 
-def extract_and_replace_references(text:str) -> str: 
+
+def extract_and_replace_references(text: str) -> str:
     """
-    Extract references from the text, replace inline citations with reference numbers, 
+    Extract references from the text, replace inline citations with reference numbers,
     and append a reference list at the end.
 
     Args:

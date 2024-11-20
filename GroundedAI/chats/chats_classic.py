@@ -3,6 +3,7 @@ from GroundedAI.prompt_templates.rag_prompt_templates import prompt_dict
 from GroundedAI.chains.chains import ChainFactory
 from langchain.schema.output_parser import StrOutputParser
 
+
 def initialize_chain():
     model = LLMFactory(provider="OpenAI").create_model()
     prompt = prompt_dict["simple_chat_strawberry_llm"]
@@ -26,7 +27,7 @@ def start_prompting(chain, prompt):
 
 def chat():
     chain = initialize_chain()
-    #prompt = "We are working with an Aluminum-8.5wt% Magnesium alloy. The alloy exhibits corrosion in the nitric acid mass loss test. What could be the possible reason for this observation?"
+    # prompt = "We are working with an Aluminum-8.5wt% Magnesium alloy. The alloy exhibits corrosion in the nitric acid mass loss test. What could be the possible reason for this observation?"
     prompt = """
     given this CSV:
     Name, Age, Annual Income, Bank Account ID, Country, Birth Date

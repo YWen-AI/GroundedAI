@@ -1,6 +1,6 @@
 from langchain.prompts import HumanMessagePromptTemplate, SystemMessagePromptTemplate, ChatPromptTemplate
 
-#################### Basic templates
+# Basic templates
 user_template = """
 {question}
 """
@@ -48,7 +48,7 @@ default_strawberry_qa_prompt = ChatPromptTemplate.from_messages(messages_rag)
 
 ####################
 # Brute-force QA RAG prompt templates
-matgpt_brute_force_system_template= """
+matgpt_brute_force_system_template = """
 You are only allowed to answer questions in the field of materials science. 
 If the question is not related to materials science, you should reply politely that you can only answer questions in the field of materials science.
 You are going to answer the user's question using the contexts below.
@@ -68,7 +68,7 @@ brute_force_qa_prompt = ChatPromptTemplate.from_messages(brute_force_messages_ra
 
 ####################
 # "Detail" brute-force QA RAG prompt templates
-matgpt_detail_brute_force_system_template= """
+matgpt_detail_brute_force_system_template = """
 You are only allowed to answer questions in the field of materials science. 
 If the question is not related to materials science, you should reply politely that you can only answer questions in the field of materials science.
 You are going to answer the user's question in detail using the contexts below.
@@ -198,7 +198,6 @@ chat_strawberry_llm_messages_rag = [
 ]
 
 chat_strawberry_llm_prompt = ChatPromptTemplate.from_messages(chat_strawberry_llm_messages_rag)
-
 
 
 ####################

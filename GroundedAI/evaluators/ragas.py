@@ -6,9 +6,10 @@ from datasets import Dataset, DatasetDict
 from sentence_transformers import CrossEncoder
 
 from ragas import evaluate
-from ragas.metrics import answer_relevancy, faithfulness, context_recall, context_precision, answer_correctness,answer_similarity
+from ragas.metrics import answer_relevancy, faithfulness, context_recall, context_precision, answer_correctness, answer_similarity
 
 from GroundedAI.utils.word_processing import detect_delimiter
+
 
 class RagasEvaluator:
     def __init__(self, metrics, groundtruths_folder, generated_folder, groundtruths_file, generated_file, output, bad_PDF):
@@ -20,17 +21,17 @@ class RagasEvaluator:
         self.output = output
         self.bad_PDF = bad_PDF
         self.cross_encoder = CrossEncoder("cross-encoder/stsb-TinyBERT-L-4")
-    
+
     def load_generated_QA_dataset(self):
         delimiter = detect_delimiter(self.generated_folder + self.generated_file)
         df = pd.read_csv(self.generated_folder + self.generated_file, delimiter=delimiter)
-        df.rename(columns={'query': 'question', 'context':'contexts'}, inplace=True)
+        df.rename(columns={'query': 'question', 'context': 'contexts'}, inplace=True)
         return df
-    
+
     def load_groundtruths_QA_dataset(self):
         delimiter = detect_delimiter(self.groundtruths_folder + self.groundtruths_file)
         df = pd.read_csv(self.groundtruths_folder + self.groundtruths_file, delimiter=delimiter)
-        df.rename(columns={'query': 'question', 'answer':'ground_truth'}, inplace=True)
+        df.rename(columns={'query': 'question', 'answer': 'ground_truth'}, inplace=True)
         return df
 
     def merge_generated_groundtruths_QA_dataset(self, df_generated, df_groundtruths):
@@ -40,16 +41,16 @@ class RagasEvaluator:
             raise ValueError("Two files have different number of question! Unable to compare.")
         if not df_generated['question'].equals(df_groundtruths['question']):
             raise ValueError("The questions are not the same!")
-        df = df_groundtruths.join(df_generated[['contexts','answer']])
+        df = df_groundtruths.join(df_generated[['contexts', 'answer']])
         if df.empty:
             raise ValueError("Join operation resulted in an empty DataFrame!")
         return df
-    
+
     def remove_bad_PDF(self, df):
         df = df.drop(df[df['source'] == self.bad_PDF].index)
         df = df.reset_index(drop=True)
         return df
-    
+
     def QA_dataframe_preprocessing(self, df):
         """
         This function preprocess the dataframe of the QA dataset for the RAG evaluation.
@@ -62,19 +63,19 @@ class RagasEvaluator:
             
         """
         # Remove metadata
-        df = df.drop(columns=['source','page'], axis=1)
+        df = df.drop(columns=['source', 'page'], axis=1)
 
         # Convert the ground_truth and contexts columns from string to list
-        #df['ground_truth'] = df['ground_truth'].apply(lambda x: [x])
+        # df['ground_truth'] = df['ground_truth'].apply(lambda x: [x])
 
         # drop nan cloumns
         if df["contexts"].isna().all():
             df = df.drop(columns=['contexts'], axis=1)
         else:
             df["contexts"] = df["contexts"].apply(ast.literal_eval)
-        
+
         return df
-    
+
     def transform_df_2_dataset(self, df, dataset_name):
         """
         This function transform the dataframe of the QA dataset to the Huggingface dataset for the RAG evaluation.
@@ -90,8 +91,8 @@ class RagasEvaluator:
 
         test_dataset_dict = DatasetDict({dataset_name: test_dataset})
 
-        return test_dataset_dict        
-    
+        return test_dataset_dict
+
     def RAGAS_evaluate(self, test_dataset_dict, dataset_name):
         """
         This function evaluate the QA dataset using RAGAS and output a dataframe and csv file of the evaluation results.
@@ -105,12 +106,12 @@ class RagasEvaluator:
         Output:
             df_result: a dataframe of the evaluation results
         """
-        if self.metrics==None:
+        if self.metrics == None:
             metrics = [context_precision, faithfulness, answer_relevancy, context_recall, answer_correctness, answer_similarity]
         else:
             metrics = self.metrics
-        
-        result = evaluate(test_dataset_dict[dataset_name],metrics=metrics, raise_exceptions=False)
+
+        result = evaluate(test_dataset_dict[dataset_name], metrics=metrics, raise_exceptions=False)
         print(result)
 
         df_result = result.to_pandas()
@@ -118,7 +119,7 @@ class RagasEvaluator:
         df_result.to_csv(self.output, index=False)
 
         return df_result
-    
+
     def run_BertScore(self, dataframe):
         """
         This function evaluate the QA dataset using BertScore and output a dataframe of the evaluation results.
@@ -136,10 +137,10 @@ class RagasEvaluator:
         inputs = [list(item) for item in list(zip(ground_truth, answers))]
         batch_size = 15
         scores = cross_encoder.predict(inputs, batch_size=batch_size, convert_to_numpy=True)
-        avg_score = sum(scores)/len(scores)
+        avg_score = sum(scores) / len(scores)
 
         return avg_score
-    
+
     def evaluate(self):
         df_groundtruths = self.load_groundtruths_QA_dataset()
         df_generated = self.load_generated_QA_dataset()
@@ -149,7 +150,7 @@ class RagasEvaluator:
         test_dataset_dict = self.transform_df_2_dataset(df_preprocessed, 'test_data')
         df_result = self.RAGAS_evaluate(test_dataset_dict, 'test_data')
         avg_score = self.run_BertScore(df_preprocessed)
-        #print(df_result)
+        # print(df_result)
         print("The BertScore of the QA dataset is: ", avg_score)
         print("Done!")
 

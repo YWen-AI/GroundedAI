@@ -3,6 +3,7 @@ from langchain.schema.messages import BaseMessage
 from langchain.schema.output import LLMResult
 from langchain_core.callbacks.base import BaseCallbackHandler
 
+
 class LLMAppCallbackHandler(BaseCallbackHandler):
     """
     A callback handler for tracking the execution of chains and chat models.
@@ -14,10 +15,9 @@ class LLMAppCallbackHandler(BaseCallbackHandler):
         Args:
             *args: Variable length argument list.
             **kwargs: Arbitrary keyword arguments.
-        """ 
+        """
         super().__init__(*args, **kwargs)
         print("LLMAppCallbackHandler initialized.")
-
 
     def on_chain_start(self, serialized: Dict[str, Any], inputs: Dict[str, Any], **kwargs) -> None:
         """
@@ -40,7 +40,6 @@ class LLMAppCallbackHandler(BaseCallbackHandler):
         """
         print("Chain ended.")
 
-
     def on_chat_model_start(self, serialized: Dict[str, Any], messages: List[List[BaseMessage]], **kwargs) -> None:
         """
         Logs the start of a chat model execution.
@@ -51,7 +50,7 @@ class LLMAppCallbackHandler(BaseCallbackHandler):
             **kwargs: Additional keyword arguments.
         """
         print(f"Chat model {serialized['id'][-1]} started.")
-        
+
     def on_llm_end(self, response: LLMResult, **kwargs) -> None:
         """
         Logs the end of a chat model execution.
@@ -59,5 +58,5 @@ class LLMAppCallbackHandler(BaseCallbackHandler):
         Args:
             response (LLMResult): The response from the chat model.
             **kwargs: Additional keyword arguments.
-        """        
+        """
         print("Chat model ended.")

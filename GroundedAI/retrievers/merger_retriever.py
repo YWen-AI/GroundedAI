@@ -1,5 +1,6 @@
 from langchain.retrievers import MergerRetriever
 
+
 def create_merger_retriever(retrievers):
     merger_retriever = MergerRetriever(retrievers=retrievers)
 
@@ -25,7 +26,6 @@ if __name__ == "__main__":
         embedding_model=embedding_model, provider="ElasticSearch", domain="Al").create_vector_store()
 
     ElasticSearch_retriever_2 = knowledge_db_2.as_retriever(search_type="similarity", search_kwargs={"k": 5})
-
 
     merger_retriever = create_merger_retriever([ElasticSearch_retriever_1, ElasticSearch_retriever_2])
 

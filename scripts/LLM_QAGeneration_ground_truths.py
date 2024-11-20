@@ -10,14 +10,14 @@ from langchain.chat_models import ChatOpenAI
 def load_pdfs_and_sampling_pages(folder_path='backend/data/pdfdocs/'):
     """
     This function Load PyPDFLoader and  for large documents where number of pages > 30, just sample 30 pages.
-    Because we will ask LLM to generate 1 question per page. 
+    Because we will ask LLM to generate 1 question per page.
     If it is a medium size document, say, page number between 10 to 30, sample 10 pages.
     If it is a small size document, don't need to sample.
 
-    Input: 
+    Input:
         folder_path: the folder path of the pdf documents
 
-    Output: 
+    Output:
         pages: a list of sampled pages from the pdf documents
     """
 
@@ -35,7 +35,7 @@ def load_pdfs_and_sampling_pages(folder_path='backend/data/pdfdocs/'):
         # load documents
         loader = PyPDFLoader(file)
         print("Loading document: ", file)
-        doc=loader.load()
+        doc = loader.load()
         # randomly select a few pages from document
         sample_size = len(doc)
         if len(doc) > 30:
@@ -64,8 +64,8 @@ def QAGeneration_from_PDF_pages(pages, model_name="gpt-4"):
 
     df_QA = pd.DataFrame([item['qa_pairs'] for item in QAPairs])
 
-    df_QA.rename(columns={'answer': 'ground_truth'}, inplace=True) # query, ground_truth, context, answer are needed for RAG evaluation
-    
+    df_QA.rename(columns={'answer': 'ground_truth'}, inplace=True)  # query, ground_truth, context, answer are needed for RAG evaluation
+
     return df_QA
 
 
@@ -100,7 +100,6 @@ def form_test_dataset(df_QA, df_metadata, output_file_name='output_firstQAEval_T
 
     Output:
         df_final: a dataframe of the test QA dataset
-    
     """
 
     if df_QA.empty or df_metadata.empty:
@@ -110,7 +109,7 @@ def form_test_dataset(df_QA, df_metadata, output_file_name='output_firstQAEval_T
 
     if df_final.empty:
         raise ValueError("Join operation resulted in an empty DataFrame!")
-    
+
     df_final.to_csv(output_file_name, index=False)
 
     return df_final

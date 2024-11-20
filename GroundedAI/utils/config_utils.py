@@ -1,5 +1,6 @@
 import json
 
+
 def load_config(file_path="GroundedAI/config.json"):
     """Load configuration file.
     Args:
