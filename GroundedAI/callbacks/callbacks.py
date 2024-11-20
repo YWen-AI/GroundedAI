@@ -38,7 +38,7 @@ class LLMAppCallbackHandler(BaseCallbackHandler):
             outputs (Dict[str, Any]): Outputs of the chain.
             **kwargs: Additional keyword arguments.
         """
-        print(f"Chain ended.")
+        print("Chain ended.")
 
 
     def on_chat_model_start(self, serialized: Dict[str, Any], messages: List[List[BaseMessage]], **kwargs) -> None:
@@ -60,4 +60,4 @@ class LLMAppCallbackHandler(BaseCallbackHandler):
             response (LLMResult): The response from the chat model.
             **kwargs: Additional keyword arguments.
         """        
-        print(f"Chat model ended.")
+        print("Chat model ended.")
