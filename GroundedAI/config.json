@@ -40,7 +40,7 @@
 
     "llm_parameters": {
       "AzureOpenAI":{
-        "llm_deployment_azure": "matgpt-4o"
+        "llm_deployment_azure": "GroundedAI-4o"
       },
       "OpenAI":{
         "llm_model_openai":  "o1-mini-2024-09-12"
@@ -49,7 +49,7 @@
 
     "embedding_parameters": {
       "AzureOpenAI":{
-        "embedding_deployment_azure": "matgpt-embedding-ada-002"
+        "embedding_deployment_azure": "GroundedAI-embedding-ada-002"
       },
       "OpenAI":{
         "embedding_model_openai": "text-embedding-ada-002"

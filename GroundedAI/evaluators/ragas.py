@@ -156,7 +156,7 @@ def parse_args():
     parser.add_argument('--groundtruths_folder', type=str, default='./data/test_datasets/ground_truths/', help='Folder where groundtruths are stored.')
     parser.add_argument('--generated_folder', type=str, default='./data/test_datasets/generated/', help='Folder where generated data is stored.')
     parser.add_argument('--groundtruths_file', type=str, default='golden_v1.csv', help='CSV file of the ground truths.')
-    parser.add_argument('--generated_file', type=str, default='output_golden_v1_brute_force_prompt_template.csv', help='CSV file of the MatGPT generated answers and contexts retrieved.')
+    parser.add_argument('--generated_file', type=str, default='output_golden_v1_brute_force_prompt_template.csv', help='CSV file of the RAG app generated answers and contexts retrieved.')
     parser.add_argument('--output', type=str, default='./data/eval_outputs/output_RAGAS_golden_v1_brute_force_prompt_template.csv', help='CSV file of the output evaluation.')
     parser.add_argument('--bad_PDF', type=str, default='./LLM_Demo_pdf/McMahon_2019_-_Evaluation_of_Metal-Rich_Primers_for_the_Mitigation_of_Intergranular_Stress_Corrosion_Cracking_in_Highly_Sensitized_Al-Mg_Alloy_AA5456-H116.pdf', help='Path to the bad PDF.')
     # Add more arguments as needed

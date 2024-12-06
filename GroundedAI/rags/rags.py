@@ -48,7 +48,7 @@ def initialize_qa_retrieval_chain(config_rag):
                             llm=llm,
                             retriever=retriever,
                             compressor=compressor,
-                            # callbacks=[MVPMatGPTCallbackHandler()]
+                            # callbacks=[LLMAppCallbackHandler()]
                             ).create_chain()
 
     print("The following is the chain:\n")
