@@ -12,10 +12,10 @@ async def rag_eval(only_eval, tag, evaluator_type, input_groundtruths_file, inpu
 
     if not only_eval:
         df_rag_output = await batch_rags(input_groundtruths_folder + input_groundtruths_file, config["rag_parameters"])
-        df_rag_output.to_csv(generated_folder + 'output_' + tag +'.csv')
-    
-    output_rag_filename = 'output_' + tag +'.csv'
-    output_eval_file_name = output_folder+'output_RAGAS_'+ tag + '.csv'
+        df_rag_output.to_csv(generated_folder + 'output_' + tag + '.csv')
+
+    output_rag_filename = 'output_' + tag + '.csv'
+    output_eval_file_name = output_folder + 'output_RAGAS_' + tag + '.csv'
 
     if evaluator_type == "RAGAS":
         evaluator = RagasEvaluator(metrics, input_groundtruths_folder, generated_folder,
@@ -27,6 +27,7 @@ async def rag_eval(only_eval, tag, evaluator_type, input_groundtruths_file, inpu
         raise ValueError
 
     return
+
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Evaluate RAGAs.')
@@ -47,15 +48,15 @@ if __name__ == "__main__":
     import asyncio
     args = parse_args()
     args.tag = 'test_20241001'
-    args.only_eval=True
+    args.only_eval = True
     asyncio.run(rag_eval(
         args.only_eval,
-        args.tag, 
-        args.evaluator, 
-        args.groundtruths_file, 
-        args.groundtruths_folder, 
-        args.generated_folder, 
-        args.output_folder, 
-        args.metrics, 
+        args.tag,
+        args.evaluator,
+        args.groundtruths_file,
+        args.groundtruths_folder,
+        args.generated_folder,
+        args.output_folder,
+        args.metrics,
         args.bad_PDF)
     )

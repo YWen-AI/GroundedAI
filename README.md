@@ -29,6 +29,10 @@ If you have other scripts or tests, you can run them with:
 ### Run the test
 `poetry run pytest test/`
 
+### Run Ruff for linting checks
+`poetry run ruff check`.
+With fix: `poetry run ruff check --fix`.
+
 
 ## Stucture
 ```
@@ -41,11 +45,9 @@ GroundedAI/
 │
 ├── data_preprocessing/  # Storing scripts needed for making test dataset
 │
-├── dependencies/
-│   └── Grounded-AI.yml  # List of Python dependencies
-│
 ├── GroundedAI/         # Source code and modules for the project
 │   └── config.json     # Configuration file
+|   └── modules/        # Modules 
 │
 ├── tests/              # Unit tests for the codebase
 │
@@ -54,4 +56,6 @@ GroundedAI/
 │   └── rag_eval.py
 │
 ├── README.md           # Project overview, how to use, install, etc.
+|
+|── pyproject.toml      # Project setting
 ```

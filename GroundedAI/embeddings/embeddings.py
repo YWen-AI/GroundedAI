@@ -5,9 +5,10 @@ from dotenv import load_dotenv, find_dotenv
 
 from GroundedAI.utils.config_utils import load_config
 
+
 class EmbeddingFactory:
     def __init__(self, provider, callbacks=[]):
-        
+
         load_dotenv(find_dotenv())
         config = load_config()["embedding_parameters"]
 

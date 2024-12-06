@@ -1,5 +1,6 @@
 import os
 
+
 def load_keys(key_vault, key_owner):
     # Load keys for vdb
     # Get the current environment (default to development)

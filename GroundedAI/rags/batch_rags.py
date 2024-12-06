@@ -41,17 +41,18 @@ async def batch_rags(question_file, config_rag, batch_mode=True, batch_num=15, d
                 'metadata': meta_data
             })
 
-
     new_df = pd.DataFrame(rows)
 
     df_qa_pairs = pd.concat([df_qa_pairs, new_df], ignore_index=True)
 
     return df_qa_pairs
 
+
 async def main():
     config = load_config()
     df_output = await batch_rags("data/test_datasets/ground_truths/golden_v1.csv", config["rag_parameters"])
     df_output.to_csv('output_golden_v1_brute_force.csv')
+
 
 if __name__ == "__main__":
     import asyncio

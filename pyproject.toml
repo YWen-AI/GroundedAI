@@ -48,4 +48,4 @@ select = [
     "F",  # All errors related to code quality
 ]
 
-ignore = []
+ignore = ["E501"]
