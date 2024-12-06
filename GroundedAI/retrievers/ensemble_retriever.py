@@ -14,7 +14,7 @@ if __name__ == "__main__":
 
     embedding_model = EmbeddingFactory(provider="AzureOpenAI").create_model()
 
-     # Load knowledge database
+    # Load knowledge database
     knowledge_db_1 = VectorStoreFactory(
         embedding_model=embedding_model, provider="ElasticSearch", domain="Mg").create_vector_store()
 

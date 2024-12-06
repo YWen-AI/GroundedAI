@@ -60,7 +60,6 @@ class RagasEvaluator:
 
         Output:
             df: a dataframe of the preprocessed QA dataset
-            
         """
         # Remove metadata
         df = df.drop(columns=['source', 'page'], axis=1)
@@ -84,7 +83,6 @@ class RagasEvaluator:
 
         Output:
             test_dataset_dict: a Huggingface dataset of the QA dataset
-            
         """
 
         test_dataset = Dataset.from_pandas(df)
@@ -96,17 +94,15 @@ class RagasEvaluator:
     def RAGAS_evaluate(self, test_dataset_dict, dataset_name):
         """
         This function evaluate the QA dataset using RAGAS and output a dataframe and csv file of the evaluation results.
-        
         Input:
             test_dataset_dict: a Huggingface dataset of the QA dataset to be evaluated.
             test_dataset_name: the name of the test dataset.
             metrics: a list of metrics to be used for the evaluation.
             output_file_name: the name of the output result file.
-
         Output:
             df_result: a dataframe of the evaluation results
         """
-        if self.metrics == None:
+        if self.metrics is None:
             metrics = [context_precision, faithfulness, answer_relevancy, context_recall, answer_correctness, answer_similarity]
         else:
             metrics = self.metrics
@@ -129,7 +125,6 @@ class RagasEvaluator:
 
         Output:
             avg_score: the average BertScore of the QA dataset
-        
         """
         cross_encoder = self.cross_encoder
         ground_truth, answers = dataframe["ground_truth"], dataframe["answer"]
@@ -150,7 +145,7 @@ class RagasEvaluator:
         test_dataset_dict = self.transform_df_2_dataset(df_preprocessed, 'test_data')
         df_result = self.RAGAS_evaluate(test_dataset_dict, 'test_data')
         avg_score = self.run_BertScore(df_preprocessed)
-        # print(df_result)
+        print(df_result)
         print("The BertScore of the QA dataset is: ", avg_score)
         print("Done!")
 

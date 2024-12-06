@@ -40,18 +40,6 @@ async def chat():
     What is Amira's bank account ID?
     """
 
-    prompt2 = """
-    John Doe is 37 years old. John Doe has an annual income of 11223. John Doe's bank account ID is 'ijdsifiojoif', and John lives in the USA. John Doe's birth date is 1987-10-11.
-    Jane Smith is 23 years old. Jane Smith has an annual income of 221. Jane Smith's bank account ID is 'sdjwieuhf123', and Jane lives in the UK. Jane Smith's birth date is 2001-01-01.
-    Carlos Gomez is 34 years old. Carlos Gomez has an annual income of 9238. Carlos Gomez's bank account ID is 'sdhajhshf1289', and Carlos lives in the Mexico. Carlos Gomez's birth date is 1990-10-31.
-    Li Wei is 125 years old. Li Wei has an annual income of 5674. Li Wei's bank account ID is 'dhsdjsndjwjd87', and Li lives in the China. Li Wei's birth date is 1899-1-1.
-    Amira Hassan is 1014 years old. Amira Hassan has an annual income of 87766898. Amira Hassan's bank account ID is 'hdsjadj'. and Amira lives in the Egypt. Amira Hassan's birth date is 1010-10-11.
-
-
-
-    What is Amira's bank account ID?
-    """
-
     response = await start_prompting(chain, prompt)
     print(response)
 

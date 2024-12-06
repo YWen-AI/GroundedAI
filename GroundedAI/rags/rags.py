@@ -95,7 +95,7 @@ async def main():
     prompt = {'question': prompt, 'chat_history': chat_history}
 
     # print(prompt)
-    answer, contexts, meta_data = await start_prompting(qa_chain, prompt, batch_mode=False)
+    answer, contexts, meta_data = await start_prompting(qa_chain, prompt, batch_mode=False)  # noqa: F841
     # pretty_print_docs(contexts)
     print(answer)
 

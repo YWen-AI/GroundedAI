@@ -27,7 +27,7 @@ class RetrieverFactory():
                     retrievers.append(create_simple_retriever(vector_store, self.search_type, self.search_kwargs))
                 return create_merger_retriever(retrievers)
 
-            elif self.multi_vector_store_strategies == None:
+            elif self.multi_vector_store_strategies is None:
                 return create_simple_retriever(vector_store, self.search_type, self.search_kwargs)
 
             else:
